@@ -1,0 +1,32 @@
+<div class="bg-white px-2 grid grid-cols-3 h-16 items-center">
+  <span class="text-2xl font-bold">Tweeter</span>
+
+  <div class="flex h-full">
+    <%=
+      live_patch to: Routes.home_path(@socket, :index),
+        replace: false,
+        class: "flex items-center font-semibold px-4
+        #{if (@socket.view === TweeterWeb.HomeLive), do: "text-blue-500"}
+        "
+    do %>
+      Home
+    <% end %>
+    <%=
+      live_patch to: Routes.explore_path(@socket, :index),
+        replace: false,
+        class: "flex items-center font-semibold px-4
+        #{if (@socket.view === TweeterWeb.ExploreLive), do: "text-blue-500"}"
+    do %>
+      Explore
+    <% end %>
+    <%=
+      live_patch to: Routes.bookmarks_path(@socket, :index),
+        replace: false,
+        class: "flex items-center font-semibold px-4
+        #{if (@socket.view === TweeterWeb.BookmarksLive), do: "text-blue-500"}"
+    do %>
+      Bookmarks
+    <% end %>
+  </div>
+
+</div>
