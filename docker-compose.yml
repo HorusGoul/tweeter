@@ -1,0 +1,21 @@
+version: '3.7'
+services:
+  db:
+    image: postgres:12.2-alpine
+    ports:
+      - ${DB_PORT}:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - common-network
+
+volumes:
+  db-data:
+
+networks:
+  common-network:
+    driver: bridge
