@@ -8,7 +8,10 @@
 use Mix.Config
 
 config :tweeter,
-  ecto_repos: [Tweeter.Repo]
+  ecto_repos: [Tweeter.Repo],
+  generators: [binary_id: true]
+
+config :tweeter, Tweeter.Repo, migration_primary_key: [name: :id, type: :binary_id]
 
 # Configures the endpoint
 config :tweeter, TweeterWeb.Endpoint,

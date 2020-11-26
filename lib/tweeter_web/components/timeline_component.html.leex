@@ -1,3 +1,5 @@
 <div>
-  <%= live_component @socket, TweeterWeb.TweetComponent, id: "tweet-1" %>
+  <%= for tweet_id <- @tweet_ids do %>
+    <%= live_component @socket, TweeterWeb.TweetComponent, id: tweet_id %>
+  <% end %>
 </div>
