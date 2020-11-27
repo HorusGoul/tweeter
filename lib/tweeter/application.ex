@@ -5,7 +5,18 @@ defmodule Tweeter.Application do
 
   use Application
 
+  @app :tweeter
+
   def start(_type, _args) do
+    # See https://hexdocs.pm/elixir/Supervisor.html
+    # for other strategies and supported options
+    opts = [strategy: :one_for_one, name: Tweeter.Supervisor]
+
+    minimal_children = [
+      # Start the Ecto repository
+      Tweeter.Repo
+    ]
+
     children = [
       # Start the Ecto repository
       Tweeter.Repo,
@@ -19,10 +30,13 @@ defmodule Tweeter.Application do
       # {Tweeter.Worker, arg}
     ]
 
-    # See https://hexdocs.pm/elixir/Supervisor.html
-    # for other strategies and supported options
-    opts = [strategy: :one_for_one, name: Tweeter.Supervisor]
-    Supervisor.start_link(children, opts)
+    minimal_start = Application.get_env(@app, :minimal, false)
+
+    if minimal_start do
+      Supervisor.start_link(minimal_children, opts)
+    else
+      Supervisor.start_link(children, opts)
+    end
   end
 
   # Tell Phoenix to update the endpoint configuration
