@@ -24,11 +24,12 @@ RUN npm --prefix ./assets ci --progress=false --no-audit --loglevel=error
 
 COPY priv priv
 COPY assets assets
+COPY lib lib
+
 RUN npm run --prefix ./assets deploy
 RUN mix phx.digest
 
 # compile and build release
-COPY lib lib
 # uncomment COPY if rel/ exists
 # COPY rel rel
 RUN mix do compile, release
@@ -49,6 +50,7 @@ USER nobody:nobody
 
 ENV HOME=/app
 ENV MIX_ENV=prod
+ENV PORT=4000
 
 EXPOSE 4000
 

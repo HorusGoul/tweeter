@@ -1,6 +1,4 @@
 #!/bin/bash
 
-bin="/app/bin/tweeter"
-
-eval "$bin eval \"Tweeter.Release.migrate\""
-exec "$bin" "start"
+/app/bin/tweeter eval "Tweeter.Release.migrate"
+/app/bin/tweeter start
