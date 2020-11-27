@@ -3,7 +3,7 @@
 To start your Phoenix server:
 
 - Create a `.env` file based on `.env.template`
-- Launch `docker-compose up` in a terminal
+- Launch `docker-compose up db` in a terminal
 - Install dependencies with `mix deps.get`
 - Create and migrate your database with `mix ecto.setup`
 - Install Node.js dependencies with `npm install` inside the `assets` directory
