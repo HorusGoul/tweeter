@@ -32,7 +32,7 @@ secret_key_base =
 
 config :tweeter, TweeterWeb.Endpoint,
   http: [
-    host: host_url
+    host: host_url,
     port: String.to_integer(System.get_env("PORT") || "4000"),
     transport_options: [socket_opts: [:inet6]]
   ],
