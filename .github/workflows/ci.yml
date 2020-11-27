@@ -44,3 +44,11 @@ jobs:
 
       - name: tweeter configuration image digest
         run: echo ${{ steps.tweeter_build.outputs.digest }}
+
+      - name: Deploy new image
+        uses: floms/action-caprover@v1
+        with:
+          host: 'https://captain.lab.horus.dev'
+          password: '${{ secrets.CAPROVER_PASSWORD }}'
+          app: 'tweeter'
+          image: ${{ secrets.DOCKER_REGISTRY }}/${{ secrets.DOCKER_USERNAME }}/tweeter:latest
