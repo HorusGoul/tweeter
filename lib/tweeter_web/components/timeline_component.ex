@@ -1,34 +1,22 @@
 defmodule TweeterWeb.TimelineComponent do
   use TweeterWeb, :live_component
-  use TweeterWeb.Timeline.Refresh, :live_component
 
-  import Ecto.Query
-  alias Tweeter.{Tweet, Repo}
+  alias Tweeter.{Timeline}
 
-  def update(assigns, socket) do
-    result =
-      case assigns.id do
-        :home ->
-          load_home_tweets(socket)
-      end
+  def update(%{id: _id, new_tweet_id: new_tweet_id}, socket) do
+    socket =
+      socket
+      |> update(:tweet_ids, fn tweet_ids ->
+        [new_tweet_id | tweet_ids]
+      end)
 
-    refresh_timeline_schedule()
-
-    result
+    {:ok, socket}
   end
 
-  defp load_home_tweets(socket) do
-    tweet_ids =
-      from(t in Tweet,
-        select: t.id,
-        order_by: [desc: t.inserted_at]
-      )
-      |> Repo.all()
+  def update(%{id: id}, socket) do
+    tweet_ids = Timeline.load_tweets(id)
 
     socket = socket |> assign(:tweet_ids, tweet_ids)
-
-    # TODO: Cache last tweet time so we can decide whether to
-    # update or not
 
     {:ok, socket}
   end

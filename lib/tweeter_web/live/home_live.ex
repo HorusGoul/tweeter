@@ -1,8 +1,10 @@
 defmodule TweeterWeb.HomeLive do
   use TweeterWeb, :live_view
-  use TweeterWeb.Timeline.Refresh, :live_view
+  use TweeterWeb.Timeline.Realtime, :live_view
 
-  def mount(args, session, socket) do
+  @impl true
+  def mount(_args, _session, socket) do
+    timeline_subscribe()
     {:ok, socket}
   end
 
