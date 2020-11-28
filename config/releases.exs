@@ -4,10 +4,10 @@
 # remember to add this file to your .gitignore.
 import Config
 
-host_url =
-  System.get_env("HOST_URL") ||
+host_name =
+  System.get_env("HOST_NAME") ||
     raise """
-    environment variable HOST_URL is missing.
+    environment variable HOST_NAME is missing.
     For example: example.com
     """
 
@@ -31,7 +31,7 @@ secret_key_base =
     """
 
 config :tweeter, TweeterWeb.Endpoint,
-  url: [host: host_url],
+  url: [host: host_name],
   http: [
     port: String.to_integer(System.get_env("PORT") || "4000"),
     transport_options: [socket_opts: [:inet6]]

@@ -18,7 +18,7 @@ services:
     environment:
       DATABASE_URL: postgres://postgres:postgres@db:5432/postgres
       SECRET_KEY_BASE: gw/XX0eYX32DsPtP0szJmOIY+5yCsuTXTMcd1Nwl3jE8/9/qAbrHuXLKdElcRpXe
-      HOST_URL: localhost
+      HOST_NAME: localhost
     ports:
       - 4000:4000
     networks:
