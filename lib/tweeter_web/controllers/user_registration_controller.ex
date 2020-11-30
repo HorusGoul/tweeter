@@ -1,14 +1,10 @@
 defmodule TweeterWeb.UserRegistrationController do
   use TweeterWeb, :controller
 
-  alias Tweeter.Accounts
-  alias Tweeter.Accounts.User
-  alias TweeterWeb.UserAuth
+  import Phoenix.LiveView.Controller
 
-  def new(conn, _params) do
-    changeset = Accounts.change_user_registration(%User{})
-    render(conn, "new.html", changeset: changeset)
-  end
+  alias Tweeter.Accounts
+  alias TweeterWeb.UserAuth
 
   def create(conn, %{"user" => user_params}) do
     case Accounts.register_user(user_params) do
@@ -24,7 +20,13 @@ defmodule TweeterWeb.UserRegistrationController do
         |> UserAuth.log_in_user(user)
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        conn
+        |> put_flash(:error, "Invalid input data")
+        |> live_render(TweeterWeb.SignUpLive,
+          session: %{
+            "changeset" => changeset
+          }
+        )
     end
   end
 end

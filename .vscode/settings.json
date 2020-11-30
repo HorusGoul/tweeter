@@ -18,4 +18,5 @@
     "html-eex": "html"
   },
   "tailwindCSS.emmetCompletions": true,
+  "scss.validate": false
 }

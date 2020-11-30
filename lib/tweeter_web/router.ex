@@ -25,6 +25,13 @@ defmodule TweeterWeb.Router do
     live "/bookmarks", BookmarksLive, :index
   end
 
+  scope "/", TweeterWeb do
+    pipe_through [:browser, :redirect_if_user_is_authenticated]
+
+    live "/sign-up", SignUpLive, :index
+    post "/sign-up", UserRegistrationController, :create
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", TweeterWeb do
   #   pipe_through :api
@@ -51,8 +58,6 @@ defmodule TweeterWeb.Router do
   scope "/", TweeterWeb do
     pipe_through [:browser, :redirect_if_user_is_authenticated]
 
-    get "/users/register", UserRegistrationController, :new
-    post "/users/register", UserRegistrationController, :create
     get "/users/log_in", UserSessionController, :new
     post "/users/log_in", UserSessionController, :create
     get "/users/reset_password", UserResetPasswordController, :new
