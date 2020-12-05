@@ -47,6 +47,8 @@ defmodule TweeterWeb do
       use Phoenix.LiveView,
         layout: {TweeterWeb.LayoutView, "live.html"}
 
+      import TweeterWeb.LiveHelpers
+
       unquote(view_helpers())
     end
   end

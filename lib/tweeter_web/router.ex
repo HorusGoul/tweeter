@@ -32,6 +32,12 @@ defmodule TweeterWeb.Router do
     post "/sign-up", UserRegistrationController, :create
   end
 
+  scope "/", TweeterWeb do
+    pipe_through [:browser, :require_authenticated_user]
+
+    delete "/logout", UserSessionController, :delete
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", TweeterWeb do
   #   pipe_through :api
@@ -77,7 +83,6 @@ defmodule TweeterWeb.Router do
   scope "/", TweeterWeb do
     pipe_through [:browser]
 
-    delete "/users/log_out", UserSessionController, :delete
     get "/users/confirm", UserConfirmationController, :new
     post "/users/confirm", UserConfirmationController, :create
     get "/users/confirm/:token", UserConfirmationController, :confirm

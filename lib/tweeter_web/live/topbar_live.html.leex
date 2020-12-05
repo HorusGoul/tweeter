@@ -29,31 +29,37 @@
     <% end %>
   </div>
 
+
+
   <div class="flex items-center justify-end gap-2">
+    <%= if @current_user do %>
+      <li><%= @current_user.email %></li>
+      <li><%= link "Settings", to: Routes.user_settings_path(@socket, :edit) %></li>
+      <li><%= link "Log out", to: Routes.user_session_path(@socket, :delete), method: :delete %></li>
+    <% else %>
+      <a href="/sign-up" class="
+        bg-blue-500 text-white
+        h-12 px-8
+        inline-flex justify-center items-center
+        rounded-full
+        font-semibold
+        hover:opacity-80
+        transition-opacity
+      ">
+        Sign Up
+      </a>
 
-    <a href="/sign-up" class="
-      bg-blue-500 text-white
-      h-12 px-8
-      inline-flex justify-center items-center
-      rounded-full
-      font-semibold
-      hover:opacity-80
-      transition-opacity
-    ">
-      Sign Up
-    </a>
-
-    <a href="/users/log_in" class="
-      text-sm
-      h-8 px-4
-      inline-flex justify-center items-center
-      font-semibold
-      hover:opacity-80
-      transition-opacity
-    ">
-      Sign In
-    </a>
-
+      <a href="/users/log_in" class="
+        text-sm
+        h-8 px-4
+        inline-flex justify-center items-center
+        font-semibold
+        hover:opacity-80
+        transition-opacity
+      ">
+        Sign In
+      </a>
+    <% end %>
   </div>
 
 
