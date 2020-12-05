@@ -19,14 +19,10 @@ defmodule TweeterWeb.UserRegistrationController do
         |> put_flash(:info, "User created successfully.")
         |> UserAuth.log_in_user(user)
 
-      {:error, %Ecto.Changeset{} = changeset} ->
+      {:error, %Ecto.Changeset{} = _changeset} ->
         conn
         |> put_flash(:error, "Invalid input data")
-        |> live_render(TweeterWeb.SignUpLive,
-          session: %{
-            "changeset" => changeset
-          }
-        )
+        |> live_render(TweeterWeb.SignUpLive)
     end
   end
 end
