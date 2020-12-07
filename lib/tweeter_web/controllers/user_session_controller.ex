@@ -4,8 +4,8 @@ defmodule TweeterWeb.UserSessionController do
   alias Tweeter.Accounts
   alias TweeterWeb.UserAuth
 
-  def new(conn, _params) do
-    render(conn, "new.html", error_message: nil)
+  def index(conn, _params) do
+    render(conn, "sign_in.html", error_message: nil)
   end
 
   def create(conn, %{"user" => user_params}) do
@@ -14,7 +14,7 @@ defmodule TweeterWeb.UserSessionController do
     if user = Accounts.get_user_by_email_and_password(email, password) do
       UserAuth.log_in_user(conn, user, user_params)
     else
-      render(conn, "new.html", error_message: "Invalid email or password")
+      render(conn, "sign_in.html", error_message: "Invalid email or password")
     end
   end
 

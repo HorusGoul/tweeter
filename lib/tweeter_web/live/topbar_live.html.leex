@@ -37,28 +37,13 @@
       <li><%= link "Settings", to: Routes.user_settings_path(@socket, :edit) %></li>
       <li><%= link "Log out", to: Routes.user_session_path(@socket, :delete), method: :delete %></li>
     <% else %>
-      <a href="/sign-up" class="
-        bg-blue-500 text-white
-        h-12 px-8
-        inline-flex justify-center items-center
-        rounded-full
-        font-semibold
-        hover:opacity-80
-        transition-opacity
-      ">
-        Sign Up
-      </a>
+      <%= live_patch "Sign Up",
+          to: Routes.sign_up_path(@socket, :index),
+          class: "button primary h-12 px-8" %>
 
-      <a href="/users/log_in" class="
-        text-sm
-        h-8 px-4
-        inline-flex justify-center items-center
-        font-semibold
-        hover:opacity-80
-        transition-opacity
-      ">
-        Sign In
-      </a>
+      <%= link "Sign In",
+          to: Routes.user_session_path(@socket, :index),
+          class: "button h-12 px-4 text-sm" %>
     <% end %>
   </div>
 

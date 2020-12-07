@@ -1,0 +1,68 @@
+<div class="h-full flex-1 flex flex-col items-center justify-center">
+
+  <h1 class="text-4xl font-semibold pb-8 text-gray-800">Sign In</h1>
+
+  <div class="bg-white shadow-md max-w-sm w-full p-8 rounded-2xl">
+
+
+    <%= form_for @conn,
+      Routes.user_session_path(@conn, :create),
+      [
+        as: :user,
+        class: "flex flex-col gap-6 items-center"
+      ], fn f -> %>
+      <%= if @error_message do %>
+        <div class="w-full alert alert-danger">
+          <p><%= @error_message %></p>
+        </div>
+      <% end %>
+
+      <div class="input-group w-full">
+        <%= label f, :email, class: "label" %>
+        <%= email_input f, :email, required: true,
+          placeholder: "hillary@doe.com",
+          class: "input"  %>
+        <%= error_tag f, :email %>
+      </div>
+
+      <div class="input-group w-full">
+        <%= label f, :password, class: "label" %>
+        <%= password_input f, :password,
+          required: true,
+          placeholder: "Your password",
+          class: "input" %>
+        <%= error_tag f, :password %>
+      </div>
+
+      <label class="label checkbox">
+        <%= checkbox f, :remember_me %>
+
+        Keep me logged in for 60 days
+      </label>
+
+
+      <%= submit "Sign In", class: "button primary h-12 px-8 w-full" %>
+
+      <div class="-mt-4 w-full">
+        <%= link "Forgot your password?",
+          to: Routes.user_reset_password_path(@conn, :new),
+          class: "text-sm text-gray-500 hover:text-gray-600" %>
+
+        <div class="w-full text-center py-3 text-xs opacity-25">— or —</div>
+
+        <%= link "Create a new account",
+          to: Routes.sign_up_path(@conn, :index),
+          class: "button h-12 px-8 w-full text-gray-800" %>
+      </div>
+
+
+
+    <% end %>
+
+
+    <p>
+    </p>
+
+  </div>
+
+</div>

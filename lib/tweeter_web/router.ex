@@ -30,6 +30,8 @@ defmodule TweeterWeb.Router do
 
     live "/sign-up", SignUpLive, :index
     post "/sign-up", UserRegistrationController, :create
+    get "/sign-in", UserSessionController, :index
+    post "/sign-in", UserSessionController, :create
   end
 
   scope "/", TweeterWeb do
@@ -64,8 +66,6 @@ defmodule TweeterWeb.Router do
   scope "/", TweeterWeb do
     pipe_through [:browser, :redirect_if_user_is_authenticated]
 
-    get "/users/log_in", UserSessionController, :new
-    post "/users/log_in", UserSessionController, :create
     get "/users/reset_password", UserResetPasswordController, :new
     post "/users/reset_password", UserResetPasswordController, :create
     get "/users/reset_password/:token", UserResetPasswordController, :edit

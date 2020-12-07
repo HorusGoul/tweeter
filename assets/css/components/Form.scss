@@ -1,0 +1,28 @@
+.label {
+  @apply text-sm 
+    text-gray-600 
+    font-semibold;
+
+  &.checkbox {
+    @apply flex
+      w-full
+      leading-none;
+
+    input[type="checkbox"] {
+      @apply mr-2;
+    }
+  }
+}
+
+.input-group {
+  @apply flex flex-col gap-1;
+}
+
+.input {
+  @apply border-b-2 
+  border-gray-200
+    border-solid
+    py-2
+    focus:outline-none
+    focus:border-blue-500;
+}

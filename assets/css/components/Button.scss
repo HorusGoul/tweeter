@@ -1,0 +1,22 @@
+.button {
+  @apply inline-flex 
+    justify-center 
+    items-center 
+    rounded-full 
+    font-semibold
+    bg-transparent 
+    text-current 
+    hover:bg-black 
+    hover:bg-opacity-5
+    transition
+    hover:opacity-80;
+
+  &[disabled] {
+    @apply bg-gray-400;
+  }
+
+  &.primary {
+    @apply bg-blue-400
+      text-white;
+  }
+}

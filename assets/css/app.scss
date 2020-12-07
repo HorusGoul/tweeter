@@ -1,6 +1,9 @@
 /* This file is for your main application css. */
 @import "../node_modules/nprogress/nprogress.css";
 
+@import "./components/Button.scss";
+@import "./components/Form.scss";
+
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
@@ -8,6 +11,7 @@
 html,
 body,
 [data-phx-main="true"],
+.phx-connected,
 [role="main"] {
   height: 100%;
 }
@@ -76,7 +80,6 @@ body {
 /* Alerts and form errors */
 .alert {
   padding: 15px;
-  margin-bottom: 20px;
   border: 1px solid transparent;
   border-radius: 4px;
 }

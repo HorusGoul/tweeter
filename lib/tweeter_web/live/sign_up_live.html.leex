@@ -19,46 +19,35 @@
       ]
     %>
 
-      <div class="flex flex-col gap-1 w-full">
-        <%= label f, :email, class: "text-sm text-gray-600 font-semibold" %>
+      <div class="input-group w-full">
+        <%= label f, :email, class: "label" %>
         <%= email_input f, :email, required: true,
           placeholder: "hillary@doe.com",
-          class: "
-            border-b-2 border-gray-200 border-solid
-            py-2
-            focus:outline-none focus:border-blue-500
-          "  %>
+          class: "input"  %>
         <%= error_tag f, :email %>
       </div>
 
-      <div class="flex flex-col gap-1 w-full">
-        <%= label f, :password, class: "text-sm text-gray-600 font-semibold" %>
+      <div class="input-group w-full">
+        <%= label f, :password, class: "label" %>
         <%= password_input f, :password,
           required: true,
           placeholder: "A secure password",
-          class: "
-            border-b-2 border-gray-200 border-solid
-            py-2
-            focus:outline-none focus:border-blue-500
-          " %>
+          class: "input" %>
         <%= error_tag f, :password %>
       </div>
 
       <%= submit "Create new account",
-        class: "
-          text-white
-          h-12 px-8
-          inline-flex justify-center items-center
-          rounded-full
-          font-semibold
-          hover:opacity-80
-          transition
-          w-full
-
-          #{if (!@changeset.valid?), do: "bg-gray-400", else: "bg-blue-500"}
-        ",
+        class: "button primary h-12 px-8 w-full",
         disabled: !@changeset.valid?
       %>
+
+      <div class="-mt-4 w-full">
+        <div class="w-full text-center py-3 text-xs opacity-25">— or —</div>
+
+        <%= link "I already have an account",
+          to: Routes.user_session_path(@socket, :index),
+          class: "button h-12 px-8 w-full text-gray-800" %>
+      </div>
 
     </form>
 
