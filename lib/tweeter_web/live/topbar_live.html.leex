@@ -1,7 +1,7 @@
-<div class="bg-white px-2 grid grid-cols-3 h-20 items-center">
+<div class="bg-white px-2 w-full flex h-20 items-center">
   <span class="text-2xl font-bold">Tweeter</span>
 
-  <div class="flex h-full">
+  <div class="flex flex-1 h-full justify-center">
     <%=
       live_patch to: Routes.home_path(@socket, :index),
         replace: false,
